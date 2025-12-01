@@ -1,0 +1,15 @@
+
+echo "$1"
+echo "$2"
+mkdir -p "./$1/$2"
+cd "./$1/$2"
+echo "
+import { runWithFileContents, log } from '../../utils';
+
+runWithFileContents((contents) => {
+  console.log({ contents })
+})
+" > "index.js"
+touch "test.txt"
+touch "puzzleInput.txt"
+cd -
