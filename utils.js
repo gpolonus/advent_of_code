@@ -12,7 +12,7 @@ export function runWithFileContents(fn) {
 
 export function getContentsFilePath() {
   const filePath = isTesting
-    ? 'test.txt'
+    ? 'testInput.txt'
     : 'puzzleInput.txt'
   return path.join(process.argv[1], filePath)
 }
