@@ -13,16 +13,11 @@ runWithFileContents((contents) => {
     return row.map((roll, j) => {
       if (roll !== '@') return '.'
 
-      const adjacentRolls = (
-        (rows[i + 1]?.[j + 1] === '@' ? 1 : 0) +
-        (rows[i + 1]?.[j] === '@' ? 1 : 0) +
-        (rows[i + 1]?.[j - 1] === '@' ? 1 : 0) +
-        (rows[i - 1]?.[j + 1] === '@' ? 1 : 0) +
-        (rows[i - 1]?.[j] === '@' ? 1 : 0) +
-        (rows[i - 1]?.[j - 1] === '@' ? 1 : 0) +
-        (rows[i][j + 1] === '@' ? 1 : 0) +
-        (rows[i][j - 1] === '@' ? 1 : 0)
-      )
+      const adjacentRolls = adjacenctIndexes(i, j)
+        .reduce(
+          (ac, [ai, aj]) => ac + (rows[ai]?.[aj] === '@' ? 1 : 0),
+          0
+        )
 
       if (adjacentRolls < 4) {
         removed++
@@ -37,32 +32,36 @@ runWithFileContents((contents) => {
   let removal;
   while ((removal = removalsToProcess.shift())) {
     const [i, j] = removal;
-    [
-      [i + 1, j + 1],
-      [i + 1, j],
-      [i + 1, j - 1],
-      [i - 1, j + 1],
-      [i - 1, j],
-      [i - 1, j - 1],
-      [i, j + 1],
-      [i, j - 1],
-    ].forEach(([ii, jj]) => {
-      const roll = rows[ii]?.[jj]
+    adjacenctIndexes(i, j).forEach(([ai, aj]) => {
+      const roll = rows[ai]?.[aj]
 
       if (!roll || roll === '.') return;
 
       if (roll - 1 < 4) {
-        removalsToProcess.push([ii, jj])
+        removalsToProcess.push([ai, aj])
         removed++
-        rows[ii][jj] = '.'
+        rows[ai][aj] = '.'
       } else {
-        rows[ii][jj]--
+        rows[ai][aj]--
       }
     })
   }
 
   return removed
 })
+
+function adjacenctIndexes(i, j) {
+  return [
+    [i + 1, j + 1],
+    [i + 1, j],
+    [i + 1, j - 1],
+    [i - 1, j + 1],
+    [i - 1, j],
+    [i - 1, j - 1],
+    [i, j + 1],
+    [i, j - 1],
+  ]
+}
 
 /**
  * Part two solution that loops over the whole map repeatedly until it can't
