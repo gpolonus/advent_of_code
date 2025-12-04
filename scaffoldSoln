@@ -7,12 +7,12 @@ if [ -e "index.js" ]; then
   echo 'Solution file already exists. Skipping solution file creation.'
 else
   echo "
-  import { runWithFileContents, log } from '../../utils.js';
+import { runWithFileContents, log } from '../../utils.js';
 
-  runWithFileContents((contents) => {
-    console.log({ contents })
-  })
-  " > "index.js"
+runWithFileContents((contents) => {
+  console.log({ contents })
+})
+" > "index.js"
 fi
 
 touch "testInput.txt"
