@@ -91,7 +91,7 @@ function unifiedIntervalsMethod(ranges) {
 }
 
 /**
- * Sweep-Line/Endpoint Sorting from Gemini
+ * Sweep-Line/Endpoint Sorting algorithm from Gemini, code from me.
  */
 function sweepLineEndpointSorting(ranges) {
   const endpoints = ranges
