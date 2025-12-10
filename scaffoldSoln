@@ -6,13 +6,7 @@ cd "./$1/$2"
 if [ -e "index.js" ]; then
   echo 'Solution file already exists. Skipping solution file creation.'
 else
-  echo "
-import { runWithFileContents, log } from '../../utils.js';
-
-runWithFileContents((contents) => {
-  console.log({ contents })
-})
-" > "index.js"
+  cp ../../solutionTemplate.js index.js
 fi
 
 touch "testInput.txt"
