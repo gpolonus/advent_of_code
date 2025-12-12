@@ -46,6 +46,7 @@ function partOne(contents) {
   splitRow(rows.at(-1)).forEach((op, i) => problems[i].push(op))
 
   return problems.reduce((ac, p)=> {
+    // doProblem changed from partOne to partTwo
     return ac + doProblem(p.at(-1))(p.slice(0, -1))
   }, 0)
 

@@ -7,7 +7,7 @@ export const isTesting = process.argv[2] === 'test'
 export function runWithFileContents(fn) {
   const filePath = getContentsFilePath()
   const contents = fs.readFileSync(filePath, 'utf8').toString();
-  console.log(fn(contents))
+  console.log(fn(contents, isTesting))
 }
 
 export function getContentsFilePath() {
