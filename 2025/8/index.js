@@ -88,7 +88,6 @@ function partTwo(contents) {
 
   distances.sort(({ distance: a }, { distance: b }) => a - b)
 
-  // TODO: use this in part 1 as well
   const circuitSizes = new Map();
   const connections = new Map();
   for (let i = 0; i < distances.length; i++) {
