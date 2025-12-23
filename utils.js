@@ -27,3 +27,7 @@ export function logAlways() {
 export function log(...args) {
   if (isTesting || logging) console.log(...args)
 }
+
+export function logp(...args) {
+  console.log(...args)
+}
